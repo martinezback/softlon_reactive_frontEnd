@@ -1,0 +1,139 @@
+
+    <form [formGroup]="reactiveForm" >
+        <div class="card alert alert-primary" >
+            <div class="card-body">
+
+                <div class="mb-2">
+                    <label class="form-label">
+                        Nombre:
+                    </label>
+                    <input class="form-control" formControlName="nombre" type="text" #nombre >
+                    <ng-container
+                     *ngTemplateOutlet="nombreError;context:{error:reactiveForm.get('nombre')?.errors
+                    ,pristine: reactiveForm.get('nombre')?.pristine}">
+                    </ng-container>
+                    
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">
+                        Descripcion:
+                    </label>
+                    <input class="form-control" formControlName="descripcion" type="text" #descripcion>
+                    <ng-container
+                     *ngTemplateOutlet="nombreError;context:{error:reactiveForm.get('descripcion')?.errors
+                    ,pristine: reactiveForm.get('descripcion')?.pristine}">
+                    </ng-container>
+                </div>
+
+            </div>
+        </div>
+        <button 
+        class="btn btn-primary mt-2" [disabled]="reactiveForm.invalid" (click)="enviarDatos=true">
+            Enviar Info
+        </button>
+    </form>
+
+    <div class="alert alert-primary mt-4" *ngIf="enviarDatos" >
+        <p>datos enviados correctamente</p>
+        <p class="form-control">{{nombre.value}}</p>
+        <p class="form-control">{{descripcion.value}}</p>
+    </div>
+        
+
+    <ng-template  #nombreError let-pristine="pristine" let-error="error">
+
+        <div *ngIf="!pristine">
+            <div 
+            class="alert alert-danger mt-2"
+            *ngIf="error?.pattern"
+            >Solo letras y espacios</div>
+
+            <div 
+            class="alert alert-danger mt-2"
+            *ngIf="error?.required"
+            >Campo requerido</div>
+
+            <div 
+            class="alert alert-danger mt-2"
+            *ngIf="error?.maxlength"
+            >Maximo 10 caracteres</div>
+        </div>
+        {{error | json}}
+    </ng-template>
+
+    <ng-template  #descripcionError let-pristine="pristine" let-error="error">
+
+        <div *ngIf="!pristine">
+            <div 
+            class="alert alert-danger mt-2"
+            *ngIf="error?.pattern"
+            >Solo letras y espacios</div>
+
+            <div 
+            class="alert alert-danger mt-2"
+            *ngIf="error?.required"
+            >Campo requerido</div>
+
+            <div 
+            class="alert alert-danger mt-2"
+            *ngIf="error?.minlength"
+            >Minimo 5 caracteres</div>
+        </div>
+        
+    </ng-template>
+
+
+<!-- <form (ngSubmit)="enviarDatos()" [formGroup]="reactiveForm" >
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-2">
+                <label class="form-label">
+                    Nombre:
+                </label>
+                <input name="nombre" type="text" class="form-control " placeholder="nombre" formControlName="nombre" >
+
+                <div class="alert alert-danger mt-2" [hidden]="reactiveForm.get('nombre')?.valid || 
+                
+                reactiveForm.get('nombre')?.pristine">
+                        Nombre obligatorio
+                </div>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label">
+                    Descripcion:
+                </label>
+                <input name="descripcion" type="text" class="form-control " placeholder="descripcion"formControlName="descripcion">
+
+                <div class="alert alert-danger mt-2" [hidden]="reactiveForm.get('descripcion')?.valid || reactiveForm.get('descripcion')?.pristine">
+                    <span *ngIf="reactiveForm.get('descripcion')?.errors?.['minLength']">
+                        debe tener minimo 5 caracteres
+                    </span >
+
+                       
+                    <span *ngIf="reactiveForm.get('descripcion')?.errors?.['required']">
+                        descripcion obligatoria
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary mt-2" (click)="enviarDatos()" [disabled]="true">
+        Enviar Info
+    </button>
+</form>
+
+
+
+
+<div class="alert alert-primary mt-4" *ngIf="mostrarDatos; else envio">
+<p>datos enviados correctamente</p>
+<p>{{nombre.value}}</p>
+<p>{{descripcion.value}}</p>
+</div>
+
+<ng-template #envio>
+esperando envio de datos...
+</ng-template> -->
+

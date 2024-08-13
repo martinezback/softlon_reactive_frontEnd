@@ -1,0 +1,47 @@
+<!-- 
+    <form (ngSubmit)="enviarDatos()" #formPlantilla="ngForm">
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-2">
+                    <label class="form-label">
+                        Nombre:
+                    </label>
+                    <input name="nombre" type="text" class="form-control " placeholder="nombre" [(ngModel)]="plantilla.nombre" #nombre="ngModel" required >
+
+                    <div class="alert alert-danger mt-2" [hidden]="nombre.valid || nombre.pristine">
+                            Nombre obligatorio
+                    </div>
+                </div>
+    
+                <div class="mb-2">
+                    <label class="form-label">
+                        Descripcion:
+                    </label>
+                    <input name="descripcion" type="text" class="form-control " placeholder="descripcion"[(ngModel)]="plantilla.descripcion" #descripcion="ngModel" required>
+
+                    <div class="alert alert-danger mt-2" [hidden]="descripcion.valid || descripcion.pristine">
+                        descripcion obligatoria
+                </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary mt-2" (click)="enviarDatos()" [disabled]="formPlantilla.invalid">
+            Enviar Info
+        </button>
+    </form>
+    
+
+    
+
+<div class="alert alert-primary mt-4" *ngIf="mostrarDatos; else envio">
+    <p>datos enviados correctamente</p>
+    <p>{{plantilla.nombre}}</p>
+    <p>{{plantilla.descripcion}}</p>
+</div>
+
+<ng-template  #envio>
+    esperando envio de datos...
+</ng-template>
+
+
+ -->
